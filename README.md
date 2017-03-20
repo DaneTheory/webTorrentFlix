@@ -1,15 +1,11 @@
 <h1 align="center">
-  <br>
-  <a href="https://webtorrent.io">
-    <img src="https://webtorrent.io/img/WebTorrent.png" alt="WebTorrent" width="200">
-  </a>
-  <br>
-  WebTorrent Desktop
+
+  WebTorrentFlix 
   <br>
   <br>
 </h1>
 
-<h4 align="center">The streaming torrent app. For Mac, Windows, and Linux.</h4>
+<h4 align="center">The streaming torrent app with PirateBay searh feature. For Mac, Windows, and Linux.</h4>
 
 <p align="center">
   <a href="https://gitter.im/feross/webtorrent">
