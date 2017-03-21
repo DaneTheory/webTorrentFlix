@@ -5,7 +5,7 @@
   <br>
 </h1>
 
-<h4 align="center">The streaming torrent app with PirateBay searh feature. For Mac, Windows, and Linux.</h4>
+<h4 align="center">The streaming torrent app with PirateBay search/browse feature. For Mac, Windows, and Linux.</h4>
 <h4 align="center">Based in the open source project of WebTorrent.</h4>
 
 <p align="center">
