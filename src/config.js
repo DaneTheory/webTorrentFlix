@@ -19,7 +19,7 @@ const UI_TORRENT_HEIGHT = 100
 
 module.exports = {
   ANNOUNCEMENT_URL: 'https://webtorrent.io/desktop/announcement',
-  AUTO_UPDATE_URL: 'https://webtorrent.io/desktop/update',
+  AUTO_UPDATE_URL: 'https://otomogroove.com/juanflix/update',
   CRASH_REPORT_URL: 'https://webtorrent.io/desktop/crash-report',
   TELEMETRY_URL: 'https://webtorrent.io/desktop/telemetry',
 

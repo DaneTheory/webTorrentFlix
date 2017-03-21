@@ -37,9 +37,21 @@ class SearchPage extends React.Component {
         this.setState({isLoading:true})
 
         PirateBay.search(text, {
-            category: 0
+            category: 'all',    // default - 'all' | 'all', 'audio', 'video', 'xxx',
+                                //                   'applications', 'games', 'other'
+                                //
+                                // You can also use the category number:
+                                // `/search/0/99/{category_number}`
+            filter: {
+                verified: false    // default - false | Filter all VIP or trusted torrents
+            },
+            page: 0,            // default - 0 - 99
+            orderBy: 'leeches', // default - name, date, size, seeds, leeches
+            sortBy: 'desc'      // default - desc, asc
         }).then(results => this.parseResults(results))
             .catch(err => console.log(err))
+
+
 
     }
 
