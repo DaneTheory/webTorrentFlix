@@ -3,7 +3,7 @@ const path = require('path')
 const electron = require('electron')
 const arch = require('arch')
 
-const APP_NAME = 'WebTorrent'
+const APP_NAME = 'JuanFlix'
 const APP_TEAM = 'WebTorrent, LLC'
 const APP_VERSION = require('../package.json').version
 

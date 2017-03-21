@@ -17,6 +17,7 @@ class SearchPage extends React.Component {
         this.state = {
             torrents:[],
             searchTxt:'',
+            isLoading:false,
         };
 
        this.onSubmitSearch=this.onSubmitSearch.bind(this)
@@ -32,6 +33,8 @@ class SearchPage extends React.Component {
 
         console.log(text);
 
+        this.setState({isLoading:true})
+
         PirateBay.search(text, {
             category: 0
         }).then(results => this.parseResults(results))
@@ -42,6 +45,8 @@ class SearchPage extends React.Component {
 
 
     parseResults(results){
+        this.setState({isLoading:false})
+
         const style = {}
 
             const gradient = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%)'
@@ -81,29 +86,36 @@ class SearchPage extends React.Component {
     renderBtns(torrentdata){
 
         return (
-            <i
-                key='add-button'
-                title='Add to torrents'
-                style={{width:60,height:60,}}
-                className={'icon add'}
-                onClick={()=> dispatch('addTorrent', torrentdata.magnetLink)}>
-                add
-            </i>
-
-        );
+            <img className="addSearchItem" src="./add.png"  onClick={()=> dispatch('addTorrent', torrentdata.magnetLink)}/>
+        )
     }
 
     renderSearchHeader(){
         return(
             <div key='torrent-piratebay' className='torrent-piratebay'>
-                <form onSubmit={(evt)=>this.onSubmitSearch(evt)} >
+                <form  >
                     <input  placeholder="Enter movie or TV show" value={this.state.searchTxt} onChange={this.handleChange}/>
-                    <button type="submit" >OK</button>
+
+                    <img src="./find.svg" onClick={(evt)=>this.onSubmitSearch(evt)}/>
+
 
                 </form>
 
+
             </div>
         )
+    }
+
+    renderLoading(){
+        if(this.state.isLoading){
+            return (
+                <div className="loadingSpinner">
+                    <img src="./loading.svg"/>
+                </div>
+            )
+        }else{
+            return this.state.torrents;
+        }
     }
 
     render() {
@@ -112,7 +124,8 @@ class SearchPage extends React.Component {
         return (
         <div key='torrent-list' className='torrent-list'>
             {this.renderSearchHeader()}
-            {this.state.torrents}
+            {this.renderLoading()}
+
         </div>
 
         )
