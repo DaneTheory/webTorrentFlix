@@ -380,7 +380,7 @@ textarea,
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100px;
+  height: 120px;
   align-items: center;
   justify-content: center;
   text-shadow: rgba(0, 0, 0, 0.5) 0 0 4px;
@@ -455,7 +455,7 @@ textarea,
 padding: 10px;
   width: 40px;
   height: 40px;
-    margin-top: 30px;
+    margin-top: 35px;
     margin-left: -80px;
 
 
