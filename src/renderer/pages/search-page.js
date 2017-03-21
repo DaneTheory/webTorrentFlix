@@ -24,12 +24,13 @@ class SearchPage extends React.Component {
        this.handleChange=this.handleChange.bind(this)
        this.renderBtns=this.renderBtns.bind(this)
 
+
     }
     handleChange(event) {
         this.setState({searchTxt: event.target.value});
     }
     onSubmitSearch(evt){
-        let text = this.state.searchTxt;
+        let text = this.state.searchTxt.toLowerCase();
 
         console.log(text);
 
@@ -40,6 +41,11 @@ class SearchPage extends React.Component {
         }).then(results => this.parseResults(results))
             .catch(err => console.log(err))
 
+    }
+
+
+    componentDidMount(){
+        this.onSubmitSearch(null)
     }
 
 
@@ -93,8 +99,9 @@ class SearchPage extends React.Component {
     renderSearchHeader(){
         return(
             <div key='torrent-piratebay' className='torrent-piratebay'>
+
                 <form  >
-                    <input  placeholder="Enter movie or TV show" value={this.state.searchTxt} onChange={this.handleChange}/>
+                    <input  placeholder="Enter movie or TV show" value={this.state.searchTxt} onChange={this.handleChange} onClick={()=>this.setState({searchTxt:''})}/>
 
                     <img src="./find.svg" onClick={(evt)=>this.onSubmitSearch(evt)}/>
 
@@ -109,12 +116,16 @@ class SearchPage extends React.Component {
     renderLoading(){
         if(this.state.isLoading){
             return (
-                <div className="loadingSpinner">
+                <div className="centerSearch">
                     <img src="./loading.svg"/>
                 </div>
             )
         }else{
-            return this.state.torrents;
+            return (this.state.torrents.length>0) ?  this.state.torrents: ( <div className="centerSearchGif">
+                    <img src="./sad.gif"/>
+                    <span>nope...</span>
+                </div>);
+
         }
     }
 
@@ -122,7 +133,7 @@ class SearchPage extends React.Component {
 
 
         return (
-        <div key='torrent-list' className='torrent-list'>
+        <div className="torrent-piratebay-container">
             {this.renderSearchHeader()}
             {this.renderLoading()}
 

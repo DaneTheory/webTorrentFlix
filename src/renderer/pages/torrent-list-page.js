@@ -28,8 +28,10 @@ module.exports = class TorrentList extends React.Component {
       (torrentSummary) => this.renderTorrent(torrentSummary)
     )
       contents.push(
-          <div key='torrent-piratebay' className='torrent-piratebay'  onClick={dispatcher('gotoSearchPB')}>
-            <span className='ellipsis'>PirateBay search</span>
+          <div key='torrent-piratebay-header' className='torrent-piratebay-header'  onClick={dispatcher('gotoSearchPB')}>
+
+            <span className='ellipsis'><img className="img_skull" src="./skull.png"/>PirateBay search</span>
+
           </div>
       )
     contents.push(...torrentElems)
