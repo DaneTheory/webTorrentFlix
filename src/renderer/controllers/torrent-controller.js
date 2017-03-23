@@ -8,6 +8,7 @@ const {dispatch} = require('../lib/dispatcher')
 module.exports = class TorrentController {
   constructor (state) {
     this.state = state
+
   }
 
   torrentInfoHash (torrentKey, infoHash) {
@@ -122,7 +123,8 @@ module.exports = class TorrentController {
     // TODO: Find an efficient way to re-enable this line, which allows subtitle
     //       files which are completed after a video starts to play to be added
     //       dynamically to the list of subtitles.
-     checkForSubtitles()
+    // checkForSubtitles()
+      dispatch('checkOpenSubtitles')
   }
 
   torrentFileModtimes (torrentKey, fileModtimes) {

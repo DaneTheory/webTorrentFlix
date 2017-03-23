@@ -5,6 +5,9 @@
 var React = require('react')
 var prettyBytes = require('prettier-bytes')
 const PirateBay = require('thepiratebay')
+const ExtraTorrentAPI = require('extratorrent-api').Website;
+const extraTorrentAPI = new ExtraTorrentAPI();
+
 
 
 var Checkbox = require('material-ui/Checkbox').default
@@ -36,6 +39,10 @@ class SearchPage extends React.Component {
 
         this.setState({isLoading:true})
 
+        this.searchExraTorrent(text);
+
+        return;
+
         PirateBay.search(text, {
             category: 'all',    // default - 'all' | 'all', 'audio', 'video', 'xxx',
                                 //                   'applications', 'games', 'other'
@@ -55,13 +62,36 @@ class SearchPage extends React.Component {
 
     }
 
+    searchExraTorrent(text){
+        console.log('searhKAT');
+        text = text==''?'ettv':text;
+        extraTorrentAPI.search({
+            with_words: text,
+            seeds_from:100,
+        }).then(res => this.parseResultsExtraTorrent(res.results))
+            .catch(err => console.error(err));
+    }
+
 
     componentDidMount(){
         this.onSubmitSearch(null)
     }
 
 
+    parseResultsExtraTorrent(results){
 
+        var etRes = []
+
+        for(var i=0;i<results.length;i++){
+            var item = results[i];
+            var parsedItem ={testID:i,magnetLink:item.magnet,name:item.title,uploadDate:item.date_added};
+
+            etRes.push(parsedItem)
+        }
+
+        this.parseResults(etRes)
+
+    }
     parseResults(results){
         this.setState({isLoading:false})
 
@@ -111,16 +141,10 @@ class SearchPage extends React.Component {
     renderSearchHeader(){
         return(
             <div key='torrent-piratebay' className='torrent-piratebay'>
-
                 <form  >
                     <input  placeholder="Enter movie or TV show" value={this.state.searchTxt} onChange={this.handleChange} onClick={()=>this.setState({searchTxt:''})}/>
-
                     <img src="./find.svg" onClick={(evt)=>this.onSubmitSearch(evt)}/>
-
-
                 </form>
-
-
             </div>
         )
     }

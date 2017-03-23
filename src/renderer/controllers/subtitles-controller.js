@@ -32,7 +32,38 @@ module.exports = class SubtitlesController {
     subtitles.showMenu = !subtitles.showMenu
   }
 
+  checkOpenSubtitles(){
+      /**console.log('XSXSX:::checkOpenSubtitles ')
+      OpenSubtitles.search({
+          sublanguageid: 'fre',       // Can be an array.join, 'all', or be omitted.
+          hash: '8e245d9679d31e12',   // Size + 64bit checksum of the first and last 64k
+          filesize: '129994823',      // Total size, in bytes.
+          path: 'foo/bar.mp4',        // Complete path to the video file, it allows
+                                      //   to automatically calculate 'hash'.
+          filename: 'bar.mp4',        // The video file name. Better if extension
+                                      //   is included.
+          season: '2',
+          episode: '3',
+          extensions: ['srt', 'vtt'], // Accepted extensions, defaults to 'srt'.
+          limit: '3',                 // Can be 'best', 'all' or an
+                                      // arbitrary nb. Defaults to 'best'
+          imdbid: '528809',           // 'tt528809' is fine too.
+          fps: '23.96',               // Number of frames per sec in the video.
+          query: 'Charlie Chaplin',   // Text-based query, this is not recommended.
+          gzip: true                  // returns url to gzipped subtitles, defaults to false
+      }).then(subtitles => {
+          // an array of objects, no duplicates (ordered by
+          // matching + uploader, with total downloads as fallback)
+
+          console.log('GTGTGTGTGT::: '+subtitles.length);
+
+
+      });**/
+  }
+
   addSubtitles (files, autoSelect) {
+
+
     // Subtitles are only supported when playing video files
     if (this.state.playing.type !== 'video') return
     if (files.length === 0) return
@@ -66,6 +97,7 @@ module.exports = class SubtitlesController {
   }
 
   checkForSubtitles () {
+    console.log('checkForSubtitles');
     if (this.state.playing.type !== 'video') return
     const torrentSummary = this.state.getPlayingTorrentSummary()
     if (!torrentSummary || !torrentSummary.progress) return

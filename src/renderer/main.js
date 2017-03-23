@@ -288,6 +288,7 @@ const dispatchHandlers = {
   'toggleSubtitlesMenu': () => controllers.subtitles().toggleSubtitlesMenu(),
   'checkForSubtitles': () => controllers.subtitles().checkForSubtitles(),
   'addSubtitles': (files, autoSelect) => controllers.subtitles().addSubtitles(files, autoSelect),
+    'checkOpenSubtitles': () => controllers.subtitles().checkOpenSubtitles(),
 
   // Local media: <video>, <audio>, external players
   'mediaStalled': () => controllers.media().mediaStalled(),
